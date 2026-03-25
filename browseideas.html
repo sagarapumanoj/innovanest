@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Browse Ideas - InnovaNest</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💡</text></svg>">
+
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .browse-container {
+      max-width: 800px;
+      margin: 4rem auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.1);
+    }
+    .browse-container h2 {
+      color: #4e54c8;
+      margin-bottom: 1rem;
+    }
+    .browse-container input {
+      width: 100%;
+      padding: 0.8rem;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+    .idea-list {
+      margin-top: 2rem;
+    }
+    .idea-card {
+      background: #f9f9f9;
+      padding: 1rem 1.5rem;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    .idea-card h4 {
+      color: #4e54c8;
+      margin: 0 0 0.5rem;
+    }
+    .idea-card p {
+      margin: 0.3rem 0;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <header class="main-header">
+    <div class="logo">🚀 InnovaNest</div>
+    <nav>
+      <ul>
+        <li><a href="main.html">Dashboard</a></li>
+        <li><a href="submitidea.html">Share Idea</a></li>
+        <li><a href="browseideas.html">Browse Ideas</a></li>
+        <li><a href="myideas.html">My Ideas</a></li>
+        <li><a href="index.html">Logout</a></li>
+      </ul>
+    </nav>
+    <div class="profile-icon" onclick="window.location.href='profile.html'">
+      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Profile Icon" />
+    </div>
+  </header>
+
+  <main class="browse-container">
+    <h2>Browse Ideas by Domain</h2>
+    <input type="text" id="domainInput" placeholder="e.g., AI, Web, IoT, Healthcare" oninput="filterIdeas()" />
+
+    <div class="idea-list" id="ideaList">
+      <!-- Filtered ideas will show here -->
+    </div>
+  </main>
+
+  <script>
+    const ideas = [
+      { title: "Smart Water Monitoring", domain: "IoT", desc: "IoT sensors for agriculture" },
+      { title: "AI Language Learning App", domain: "AI", desc: "Personalized learning with AI" },
+      { title: "Healthcare Chatbot", domain: "AI", desc: "Virtual assistant for hospitals" },
+      { title: "Online Portfolio Builder", domain: "Web", desc: "Drag & drop web tool for portfolios" },
+      { title: "Green Energy Dashboard", domain: "IoT", desc: "Track and optimize home energy" },
+      { title: "Freelance Finder App", domain: "Mobile", desc: "Match students with freelance gigs" },
+      { title: "Smart Home Security", domain: "IoT", desc: "AI + IoT home security system" },
+      { title: "Mental Health Tracker", domain: "Healthcare", desc: "Daily logs & support with AI" },
+      { title: "Resume AI Builder", domain: "AI", desc: "Auto-generate resumes with prompts" },
+      { title: "Virtual Study Group", domain: "Web", desc: "Live collab + notes + brainstorming" }
+    ];
+
+    function filterIdeas() {
+      const input = document.getElementById("domainInput").value.trim().toLowerCase();
+      const filtered = ideas.filter(idea => idea.domain.toLowerCase().includes(input));
+      
+      const ideaList = document.getElementById("ideaList");
+      ideaList.innerHTML = '';
+
+      if (filtered.length === 0 && input) {
+        ideaList.innerHTML = "<p>No ideas found for this domain.</p>";
+        return;
+      }
+
+      filtered.forEach(idea => {
+        const div = document.createElement("div");
+        div.classList.add("idea-card");
+        div.innerHTML = `<h4>${idea.title}</h4><p><strong>Domain:</strong> ${idea.domain}</p><p>${idea.desc}</p>`;
+        ideaList.appendChild(div);
+      });
+    }
+  </script>
+</body>
+</html>

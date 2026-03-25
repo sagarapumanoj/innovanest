@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mentors - InnovaNest</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8f8f8;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #4e54c8;
+      color: #fff;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    header .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+
+    header nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      gap: 2rem;
+    }
+
+    header nav ul li {
+      display: inline-block;
+    }
+
+    header nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+    }
+
+    main {
+      padding: 2rem;
+    }
+
+    .mentor-card {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .mentor-card:hover {
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      transform: translateY(-5px);
+    }
+
+    .mentor-card h3 {
+      margin: 0;
+      font-size: 1.8rem;
+      color: #4e54c8;
+    }
+
+    .mentor-card p {
+      margin: 5px 0;
+      color: #555;
+    }
+
+    .footer {
+      background-color: #4e54c8;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">🚀 InnovaNest</div>
+    <nav>
+      <ul>
+        <li><a href="main.html">Dashboard</a></li>
+        <li><a href="index.html">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Our Mentors</h1>
+    <div id="mentor-list">
+      <!-- Mentor cards will be dynamically added here -->
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 InnovaNest | All rights reserved.</p>
+  </footer>
+
+  <script>
+    const mentors = [
+      { name: "John Doe", expertise: "AI & ML", location: "New York, USA" },
+      { name: "Jane Smith", expertise: "Blockchain", location: "San Francisco, USA" },
+      { name: "Pedro Hernandez", expertise: "Web Development", location: "Barcelona, Spain" },
+      { name: "David Kim", expertise: "Data Science", location: "Seoul, South Korea" },
+      { name: "Sophia Zhang", expertise: "HealthTech", location: "Beijing, China" },
+      { name: "Michael Clark", expertise: "FinTech", location: "Toronto, Canada" },
+      { name: "Emily White", expertise: "Smart Cities", location: "Los Angeles, USA" },
+      { name: "Chris Taylor", expertise: "Gaming", location: "Berlin, Germany" }
+    ];
+
+    const mentorList = document.getElementById('mentor-list');
+
+    mentors.forEach(mentor => {
+      const mentorCard = document.createElement('div');
+      mentorCard.className = 'mentor-card';
+
+      mentorCard.innerHTML = `
+        <h3>${mentor.name}</h3>
+        <p class="expertise">${mentor.expertise}</p>
+        <p class="location">Location: ${mentor.location}</p>
+      `;
+
+      mentorList.appendChild(mentorCard);
+    });
+  </script>
+</body>
+</html>

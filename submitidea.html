@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Submit Idea - InnovaNest</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+</head>
+<body class="submit-idea-body">
+
+  <div class="submit-idea-container">
+    <h2>🚀 Submit Your Brilliant Idea</h2>
+    <form id="ideaForm">
+      <input type="text" id="name" placeholder="Your Name" required />
+      <input type="email" id="email" placeholder="Your Email" required />
+      <input type="text" id="title" placeholder="Project Title" required />
+      <input type="text" id="domain" placeholder="Domain (e.g., AI, Web Dev)" required />
+      <input type="text" id="category" placeholder="Category (e.g., App, Hardware, Software)" required />
+      <input type="text" id="budget" placeholder="Estimated Budget (e.g., $1000)" required />
+      <textarea id="description" rows="5" placeholder="Project Description" required></textarea>
+      <button type="submit">Submit Idea</button>
+    </form>
+    <p class="back-link"><a href="main.html">← Back to Dashboard</a></p>
+  </div>
+
+  <script>
+    document.getElementById('ideaForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const idea = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        title: document.getElementById('title').value,
+        domain: document.getElementById('domain').value,
+        category: document.getElementById('category').value,
+        budget: document.getElementById('budget').value,
+        description: document.getElementById('description').value,
+      };
+
+      // Save to local storage
+      const existingIdeas = JSON.parse(localStorage.getItem('ideas') || '[]');
+      existingIdeas.push(idea);
+      localStorage.setItem('ideas', JSON.stringify(existingIdeas));
+
+      alert('Your idea has been submitted!');
+      document.getElementById('ideaForm').reset();
+    });
+  </script>
+
+</body>
+</html>

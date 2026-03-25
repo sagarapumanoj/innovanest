@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resources - InnovaNest</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8f8f8;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #4e54c8;
+      color: #fff;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    header .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+
+    header nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      gap: 2rem;
+    }
+
+    header nav ul li {
+      display: inline-block;
+    }
+
+    header nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+    }
+
+    main {
+      padding: 2rem;
+    }
+
+    .resource-card {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .resource-card:hover {
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      transform: translateY(-5px);
+    }
+
+    .resource-card h3 {
+      margin: 0;
+      font-size: 1.8rem;
+      color: #4e54c8;
+    }
+
+    .resource-card p {
+      margin: 5px 0;
+      color: #555;
+    }
+
+    .resource-card .category {
+      background-color: #4e54c8;
+      color: white;
+      padding: 5px 15px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    .footer {
+      background-color: #4e54c8;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">🚀 InnovaNest</div>
+    <nav>
+      <ul>
+        <li><a href="main.html">Dashboard</a></li>
+        <li><a href="index.html">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Resources for Innovators</h1>
+    <div id="resource-list">
+      <!-- Resource cards will be dynamically added here -->
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 InnovaNest | All rights reserved.</p>
+  </footer>
+
+  <script>
+    const resources = [
+      { title: "AI Tutorials", category: "AI & Machine Learning", description: "Comprehensive AI learning resources" },
+      { title: "Blockchain Basics", category: "Blockchain", description: "Learn the fundamentals of blockchain technology" },
+      { title: "Cybersecurity Guide", category: "Security", description: "Learn about cybersecurity risks and best practices" },
+      { title: "Frontend Development", category: "Web Development", description: "Master frontend development skills" },
+      { title: "Data Science for Beginners", category: "Data Science", description: "A beginner’s guide to Data Science" }
+    ];
+
+    const resourceList = document.getElementById('resource-list');
+
+    resources.forEach(resource => {
+      const resourceCard = document.createElement('div');
+      resourceCard.className = 'resource-card';
+
+      resourceCard.innerHTML = `
+        <h3>${resource.title}</h3>
+        <p><strong>Category:</strong> ${resource.category}</p>
+        <p>${resource.description}</p>
+        <span class="category">${resource.category}</span>
+      `;
+
+      resourceList.appendChild(resourceCard);
+    });
+  </script>
+</body>
+</html>

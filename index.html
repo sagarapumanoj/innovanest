@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InnovaNest - Innovate, Connect, Create</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💡</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" />
+</head>
+<body>
+  <!-- Header Section -->
+  <header class="main-header">
+    <div class="logo">🚀 InnovaNest</div>
+    <nav>
+      <ul>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="signup.html">Sign Up</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section with Background Image -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <h1>Unleash Your Creativity</h1>
+      <p>A vibrant space for student innovation, collaboration, and growth.</p>
+      <button onclick="openModal()">Let's Spark New Ideas</button>
+    </div>
+    <!-- Image added to the hero section -->
+    <div class="hero-image">
+      <!-- Image reflecting innovation and creativity -->
+      <img src="bgimage.jpg" alt="Innovation">
+    </div>
+  </section>
+
+  <!-- Modal for Login / SignUp -->
+  <div id="authModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2>Welcome to InnovaNest</h2>
+      <p>Choose your path:</p>
+      <div class="modal-buttons">
+        <button onclick="location.href='login.html'">Login</button>
+        <button onclick="location.href='signup.html'">Sign Up</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Section -->
+  <footer>
+    <div class="footer-content">
+      <div class="about-section">
+        <h3>About InnovaNest</h3>
+        <p>InnovaNest is a platform where students can come together to innovate, collaborate, and grow their ideas into reality. We provide the tools and connections to turn creative sparks into impactful projects.</p>
+      </div>
+      <div class="contact-section">
+        <h3>Contact Us</h3>
+        <ul>
+          <li><strong>Email:</strong> <a href="mailto:support@innovanest.com">support@innovanest.com</a></li>
+          <li><strong>Phone:</strong> <a href="tel:+9849933384">+91 98499 33384</a></li>
+          <li><strong>Location:</strong> Bhimavaram, India</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 InnovaNest | All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript to open and close the modal -->
+  <script>
+    function openModal() {
+      document.getElementById("authModal").style.display = "flex";
+    }
+    function closeModal() {
+      document.getElementById("authModal").style.display = "none";
+    }
+  </script>
+</body>
+</html>

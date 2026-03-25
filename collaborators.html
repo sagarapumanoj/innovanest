@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Find Collaborators - InnovaNest</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .collab-container {
+      max-width: 900px;
+      margin: 4rem auto;
+      padding: 2rem;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.1);
+    }
+
+    .collab-container h2 {
+      text-align: center;
+      color: #4e54c8;
+      margin-bottom: 2rem;
+    }
+
+    .collab-form {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .collab-form input {
+      flex: 1;
+      padding: 0.8rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    .collab-form button {
+      padding: 0.8rem 1.5rem;
+      background: linear-gradient(to right, #4e54c8, #8f94fb);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .collab-results {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+
+    .collab-card {
+      background: #f9f9f9;
+      padding: 1rem;
+      border-radius: 10px;
+      width: 260px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .collab-card h4 {
+      color: #4e54c8;
+      margin-bottom: 0.5rem;
+    }
+
+    .collab-card p {
+      margin: 0.3rem 0;
+      color: #555;
+    }
+
+    .collab-card a {
+      color: #4e54c8;
+      text-decoration: none;
+    }
+
+    .collab-card a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header class="main-header">
+    <div class="logo">🚀 InnovaNest</div>
+    <nav>
+      <ul>
+        <li><a href="main.html">Dashboard</a></li>
+        <li><a href="submitidea.html">Share Idea</a></li>
+        <li><a href="browseideas.html">Browse Ideas</a></li>
+        <li><a href="myideas.html">My Ideas</a></li>
+        <li><a href="index.html">Logout</a></li>
+      </ul>
+    </nav>
+    <div class="profile-icon" onclick="window.location.href='profile.html'">
+      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Profile Icon" />
+    </div>
+  </header>
+
+  <main class="collab-container">
+    <h2>Find Collaborators</h2>
+    <div class="collab-form">
+      <input type="text" id="domainInput" placeholder="Enter domain (e.g. AI, Web, IoT)" />
+      <input type="text" id="locationInput" placeholder="Enter location (e.g. Hyderabad)" />
+      <button onclick="filterCollaborators()">Search</button>
+    </div>
+    <div class="collab-results" id="resultsContainer">
+      <!-- Collaborators will appear here -->
+    </div>
+  </main>
+
+  <script>
+    const collaborators = [
+      {name: 'User 1', domain: 'AI', location: 'Hyderabad', expertise: 'Machine Learning', email: 'user1@example.com', contact: '+91 1234567890'},
+      {name: 'User 2', domain: 'Web', location: 'Mumbai', expertise: 'Frontend Dev', email: 'user2@example.com', contact: '+91 2345678901'},
+      {name: 'User 3', domain: 'IoT', location: 'Bangalore', expertise: 'Hardware Dev', email: 'user3@example.com', contact: '+91 3456789012'},
+      {name: 'User 4', domain: 'AI', location: 'Delhi', expertise: 'Data Science', email: 'user4@example.com', contact: '+91 4567890123'},
+      {name: 'User 5', domain: 'Web', location: 'Chennai', expertise: 'Web Development', email: 'user5@example.com', contact: '+91 5678901234'},
+      {name: 'User 6', domain: 'Data Science', location: 'Hyderabad', expertise: 'Data Analysis', email: 'user6@example.com', contact: '+91 6789012345'},
+      {name: 'User 7', domain: 'IoT', location: 'Mumbai', expertise: 'Embedded Systems', email: 'user7@example.com', contact: '+91 7890123456'},
+      {name: 'User 8', domain: 'Web', location: 'Bangalore', expertise: 'UX/UI Design', email: 'user8@example.com', contact: '+91 8901234567'},
+      {name: 'User 9', domain: 'AI', location: 'Chennai', expertise: 'Artificial Intelligence', email: 'user9@example.com', contact: '+91 9012345678'},
+      {name: 'User 10', domain: 'Cybersecurity', location: 'Delhi', expertise: 'Security Expert', email: 'user10@example.com', contact: '+91 0123456789'},
+      {name: 'User 11', domain: 'AI', location: 'Hyderabad', expertise: 'AI Research', email: 'user11@example.com', contact: '+91 1122334455'},
+      {name: 'User 12', domain: 'Web', location: 'Mumbai', expertise: 'Full-Stack Dev', email: 'user12@example.com', contact: '+91 2233445566'},
+      {name: 'User 13', domain: 'IoT', location: 'Bangalore', expertise: 'Smart Devices', email: 'user13@example.com', contact: '+91 3344556677'},
+      {name: 'User 14', domain: 'Web', location: 'Hyderabad', expertise: 'Backend Development', email: 'user14@example.com', contact: '+91 4455667788'},
+      {name: 'User 15', domain: 'AI', location: 'Chennai', expertise: 'Natural Language Processing', email: 'user15@example.com', contact: '+91 5566778899'},
+      {name: 'User 16', domain: 'IoT', location: 'Delhi', expertise: 'Robotics', email: 'user16@example.com', contact: '+91 6677889900'},
+      {name: 'User 17', domain: 'Cybersecurity', location: 'Bangalore', expertise: 'Network Security', email: 'user17@example.com', contact: '+91 7788990011'},
+      {name: 'User 18', domain: 'AI', location: 'Hyderabad', expertise: 'Computer Vision', email: 'user18@example.com', contact: '+91 8899001122'},
+      {name: 'User 19', domain: 'Data Science', location: 'Delhi', expertise: 'Big Data', email: 'user19@example.com', contact: '+91 9900112233'},
+      {name: 'User 20', domain: 'Web', location: 'Chennai', expertise: 'Web Accessibility', email: 'user20@example.com', contact: '+91 0011223344'},
+    ];
+
+    function filterCollaborators() {
+      const domain = document.getElementById("domainInput").value.trim().toLowerCase();
+      const location = document.getElementById("locationInput").value.trim().toLowerCase();
+
+      const filtered = collaborators.filter(user =>
+        user.domain.toLowerCase().includes(domain) &&
+        user.location.toLowerCase().includes(location)
+      );
+
+      const container = document.getElementById("resultsContainer");
+      container.innerHTML = '';
+
+      if (filtered.length === 0) {
+        container.innerHTML = "<p>No collaborators found.</p>";
+        return;
+      }
+
+      filtered.forEach(user => {
+        const card = document.createElement("div");
+        card.className = "collab-card";
+        card.innerHTML = `
+          <h4>${user.name}</h4>
+          <p><strong>Domain:</strong> ${user.domain}</p>
+          <p><strong>Expertise:</strong> ${user.expertise}</p>
+          <p><strong>Location:</strong> ${user.location}</p>
+          <p><strong>Email:</strong> <a href="mailto:${user.email}">${user.email}</a></p>
+          <p><strong>Contact:</strong> <a href="tel:${user.contact}">${user.contact}</a></p>
+        `;
+        container.appendChild(card);
+      });
+    }
+  </script>
+</body>
+</html>

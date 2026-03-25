@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Profile - InnovaNest</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+</head>
+<body class="profile-body">
+
+  <header class="main-header">
+    <div class="logo">🚀 InnovaNest</div>
+    <nav>
+      <ul>
+        <li><a href="main.html">Dashboard</a></li>
+        <li><a href="submitidea.html">Share Idea</a></li>
+        <li><a href="browseideas.html">Browse Ideas</a></li>
+        <li><a href="myideas.html">My Ideas</a></li>
+        <li><a href="index.html">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main class="profile-main">
+    <div class="profile-card-big">
+      <img class="profile-picture" src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="User Photo" />
+      <div class="profile-details">
+        <h2 id="profile-name">User Name</h2>
+<p><strong>Email:</strong> <span id="profile-email">user@example.com</span></p>
+<p><strong>Gender:</strong> <span id="profile-gender">-</span></p>
+<p><strong>Location:</strong> Tech City, Country</p>
+<p><strong>Bio:</strong> Passionate innovator and tech enthusiast. Love working on projects that make a difference in the world. Always ready to collaborate and build something amazing!</p>
+        <button onclick="window.location.href='editprofile.html'">Edit Profile</button>
+      </div>
+    </div>
+  </main>
+  
+
+  <footer>
+    <div class="footer-bottom">
+      <p>&copy; 2025 InnovaNest | All rights reserved.</p>
+    </div>
+  </footer>
+  <script>
+    const user = JSON.parse(localStorage.getItem("loggedInUser"));
+    if (user) {
+      document.getElementById("profile-name").innerText = user.name;
+      document.getElementById("profile-email").innerText = user.email;
+      document.getElementById("profile-gender").innerText = user.gender;
+    } else {
+      window.location.href = "login.html";
+    }
+  </script>
+</body>
+
+  
+</html>

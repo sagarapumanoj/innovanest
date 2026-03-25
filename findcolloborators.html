@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Find Collaborators - InnovaNest</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .collab-container {
+      max-width: 900px;
+      margin: 4rem auto;
+      padding: 2rem;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.1);
+    }
+
+    .collab-container h2 {
+      text-align: center;
+      color: #4e54c8;
+      margin-bottom: 2rem;
+    }
+
+    .collab-form {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .collab-form input {
+      flex: 1;
+      padding: 0.8rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    .collab-form button {
+      padding: 0.8rem 1.5rem;
+      background: linear-gradient(to right, #4e54c8, #8f94fb);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .collab-results {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+
+    .collab-card {
+      background: #f9f9f9;
+      padding: 1rem;
+      border-radius: 10px;
+      width: 260px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .collab-card h4 {
+      color: #4e54c8;
+      margin-bottom: 0.5rem;
+    }
+
+    .collab-card p {
+      margin: 0.3rem 0;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <header class="main-header">
+    <div class="logo">🚀 InnovaNest</div>
+    <nav>
+      <ul>
+        <li><a href="main.html">Dashboard</a></li>
+        <li><a href="submitidea.html">Share Idea</a></li>
+        <li><a href="browseideas.html">Browse Ideas</a></li>
+        <li><a href="myideas.html">My Ideas</a></li>
+        <li><a href="index.html">Logout</a></li>
+      </ul>
+    </nav>
+    <div class="profile-icon" onclick="window.location.href='profile.html'">
+      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Profile Icon" />
+    </div>
+  </header>
+
+  <main class="collab-container">
+    <h2>Find Collaborators</h2>
+    <div class="collab-form">
+      <input type="text" id="domainInput" placeholder="Enter domain (e.g. AI, Web, IoT)" />
+      <input type="text" id="locationInput" placeholder="Enter location (e.g. Hyderabad)" />
+      <button onclick="filterCollaborators()">Search</button>
+    </div>
+    <div class="collab-results" id="resultsContainer">
+      <!-- Collaborators will appear here -->
+    </div>
+  </main>
+
+  <script>
+    const collaborators = [
+      {name: 'User 1', domain: 'AI', location: 'Hyderabad', expertise: 'Machine Learning'},
+      {name: 'User 2', domain: 'Web', location: 'Mumbai', expertise: 'Frontend Dev'},
+      {name: 'User 3', domain: 'IoT', location: 'Bangalore', expertise: 'Hardware Dev'},
+      {name: 'User 4', domain: 'AI', location: 'Delhi', expertise: 'Data Science'},
+      {name: 'User 5', domain: 'Web', location: 'Chennai', expertise: 'Web Development'},
+      {name: 'User 6', domain: 'Data Science', location: 'Hyderabad', expertise: 'Data Analysis'},
+      {name: 'User 7', domain: 'IoT', location: 'Mumbai', expertise: 'Embedded Systems'},
+      {name: 'User 8', domain: 'Web', location: 'Bangalore', expertise: 'UX/UI Design'},
+      {name: 'User 9', domain: 'AI', location: 'Chennai', expertise: 'Artificial Intelligence'},
+      {name: 'User 10', domain: 'Cybersecurity', location: 'Delhi', expertise: 'Security Expert'},
+      // Additional 10 collaborators
+      {name: 'User 11', domain: 'AI', location: 'Hyderabad', expertise: 'AI Research'},
+      {name: 'User 12', domain: 'Web', location: 'Mumbai', expertise: 'Full-Stack Dev'},
+      {name: 'User 13', domain: 'IoT', location: 'Bangalore', expertise: 'Smart Devices'},
+      {name: 'User 14', domain: 'Web', location: 'Hyderabad', expertise: 'Backend Development'},
+      {name: 'User 15', domain: 'AI', location: 'Chennai', expertise: 'Natural Language Processing'},
+      {name: 'User 16', domain: 'IoT', location: 'Delhi', expertise: 'Robotics'},
+      {name: 'User 17', domain: 'Cybersecurity', location: 'Bangalore', expertise: 'Network Security'},
+      {name: 'User 18', domain: 'AI', location: 'Hyderabad', expertise: 'Computer Vision'},
+      {name: 'User 19', domain: 'Data Science', location: 'Delhi', expertise: 'Big Data'},
+      {name: 'User 20', domain: 'Web', location: 'Chennai', expertise: 'Web Accessibility'},
+      // Another 20 users
+      {name: 'User 21', domain: 'AI', location: 'Mumbai', expertise: 'Robotic Process Automation'},
+      {name: 'User 22', domain: 'Web', location: 'Bangalore', expertise: 'ReactJS Developer'},
+      {name: 'User 23', domain: 'Cybersecurity', location: 'Delhi', expertise: 'Penetration Testing'},
+      {name: 'User 24', domain: 'IoT', location: 'Hyderabad', expertise: 'Smart City Solutions'},
+      {name: 'User 25', domain: 'Data Science', location: 'Bangalore', expertise: 'ML Engineering'},
+      {name: 'User 26', domain: 'AI', location: 'Chennai', expertise: 'AI Ethics'},
+      {name: 'User 27', domain: 'IoT', location: 'Mumbai', expertise: 'Wearable Technology'},
+      {name: 'User 28', domain: 'Cybersecurity', location: 'Chennai', expertise: 'Cryptography'},
+      {name: 'User 29', domain: 'Web', location: 'Delhi', expertise: 'UI/UX Designer'},
+      {name: 'User 30', domain: 'AI', location: 'Bangalore', expertise: 'Deep Learning'},
+      // Remaining 20 users...
+    ];
+
+    function filterCollaborators() {
+      const domain = document.getElementById("domainInput").value.trim().toLowerCase();
+      const location = document.getElementById("locationInput").value.trim().toLowerCase();
+
+      const filtered = collaborators.filter(user =>
+        user.domain.toLowerCase().includes(domain) &&
+        user.location.toLowerCase().includes(location)
+      );
+
+      const container = document.getElementById("resultsContainer");
+      container.innerHTML = '';
+
+      if (filtered.length === 0) {
+        container.innerHTML = "<p>No collaborators found.</p>";
+        return;
+      }
+
+      filtered.forEach(user => {
+        const card = document.createElement("div");
+        card.className = "collab-card";
+        card.innerHTML = `
+          <h4>${user.name}</h4>
+          <p><strong>Domain:</strong> ${user.domain}</p>
+          <p><strong>Expertise:</strong> ${user.expertise}</p>
+          <p><strong>Location:</strong> ${user.location}</p>
+        `;
+        container.appendChild(card);
+      });
+    }
+  </script>
+</body>
+</html>

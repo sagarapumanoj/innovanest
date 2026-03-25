@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Ideas - InnovaNest</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .ideas-container {
+      max-width: 900px;
+      margin: 4rem auto;
+      padding: 2rem;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.1);
+    }
+
+    .ideas-container h2 {
+      text-align: center;
+      color: #4e54c8;
+      margin-bottom: 2rem;
+    }
+
+    .filter-buttons {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    .filter-buttons button {
+      padding: 0.8rem 1.5rem;
+      margin: 0 1rem;
+      background: linear-gradient(to right, #4e54c8, #8f94fb);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .email-input {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .email-input input {
+      padding: 1rem;
+      border-radius: 8px;
+      border: 2px solid #ccc;
+      font-size: 1rem;
+      width: 250px;
+      transition: all 0.3s ease;
+    }
+
+    .email-input input:focus {
+      border-color: #4e54c8;
+      outline: none;
+    }
+
+    .ideas-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+
+    .idea-card {
+      background: #f9f9f9;
+      padding: 1rem;
+      border-radius: 10px;
+      width: 260px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .idea-card h4 {
+      color: #4e54c8;
+      margin-bottom: 0.5rem;
+    }
+
+    .idea-card p {
+      margin: 0.3rem 0;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <header class="main-header">
+    <div class="logo">🚀 InnovaNest</div>
+    <nav>
+      <ul>
+        <li><a href="main.html">Dashboard</a></li>
+        <li><a href="submitidea.html">Share Idea</a></li>
+        <li><a href="browseideas.html">Browse Ideas</a></li>
+        <li><a href="myideas.html">My Ideas</a></li>
+        <li><a href="index.html">Logout</a></li>
+      </ul>
+    </nav>
+    <div class="profile-icon" onclick="window.location.href='profile.html'">
+      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Profile Icon" />
+    </div>
+  </header>
+
+  <main class="ideas-container">
+    <h2>Your Ideas</h2>
+    <!-- Filter Buttons: By Me or By Email -->
+    <div class="filter-buttons">
+      <button onclick="showByEmailForm()">By Email</button>
+      <button onclick="filterIdeasByMe()">By Me</button>
+    </div>
+
+    <!-- Email Input Form for By Email option -->
+    <div class="email-input" id="emailInputForm" style="display:none;">
+      <input type="email" id="emailInput" placeholder="Enter email to filter ideas" />
+      <button onclick="filterIdeasByEmail()">Submit</button>
+    </div>
+
+    <!-- Display ideas list -->
+    <div class="ideas-list" id="ideasList">
+      <!-- Ideas will appear here -->
+    </div>
+  </main>
+
+  <script>
+    // Sample ideas with emails, including 20 new ones
+    const ideas = [
+      { title: "AI for Healthcare", description: "Developing AI systems for healthcare solutions", email: "demo@example.com" },
+      { title: "Smart Home Automation", description: "Building IoT systems for smart homes", email: "alice@mail.com" },
+      { title: "Data Analytics in Finance", description: "Utilizing big data analytics for financial planning", email: "bob@mail.com" },
+      { title: "Personalized Learning AI", description: "Creating AI to personalize online learning experiences", email: "charlie@mail.com" },
+      { title: "AI-based Legal Assistant", description: "An AI system to assist lawyers in legal research", email: "diana@mail.com" },
+      { title: "Robotic Process Automation", description: "Automating business processes with AI", email: "eve@mail.com" },
+      { title: "Blockchain for Supply Chain", description: "Using blockchain technology to improve supply chain", email: "frank@mail.com" },
+      { title: "IoT for Agriculture", description: "IoT sensors to optimize agricultural practices", email: "grace@mail.com" },
+      { title: "Autonomous Vehicles", description: "Developing self-driving car systems", email: "henry@mail.com" },
+      { title: "AI for Customer Support", description: "AI-based chatbot for customer service", email: "ivan@mail.com" },
+      { title: "Augmented Reality for Education", description: "Using AR to enhance learning experiences", email: "john@mail.com" },
+      { title: "Smart Cities with IoT", description: "Building smart cities with IoT-enabled systems", email: "lisa@mail.com" },
+      { title: "AI for Drug Discovery", description: "Using AI algorithms to speed up drug discovery", email: "mary@mail.com" },
+      { title: "AI-driven Market Research", description: "Using AI to gather and analyze market data", email: "nina@mail.com" },
+      { title: "AI in E-commerce Personalization", description: "Personalizing user experience in e-commerce with AI", email: "olga@mail.com" },
+      { title: "Robotics in Manufacturing", description: "Utilizing robots to streamline manufacturing processes", email: "paul@mail.com" },
+      { title: "Smart Healthcare Monitoring", description: "Wearable devices for continuous healthcare monitoring", email: "quincy@mail.com" },
+      { title: "Blockchain Voting System", description: "Building secure online voting systems using blockchain", email: "rachel@mail.com" },
+      { title: "AI for Renewable Energy", description: "Using AI to optimize renewable energy systems", email: "steve@mail.com" },
+      { title: "Predictive Analytics for Retail", description: "Using predictive analytics for better retail decision-making", email: "tina@mail.com" },
+      { title: "AI for Predictive Maintenance", description: "Predicting equipment failures using AI", email: "ursula@mail.com" },
+      { title: "Digital Twin for Urban Planning", description: "Creating digital models for urban planning", email: "victor@mail.com" },
+      { title: "AI-Powered Content Creation", description: "Automating content creation with AI", email: "william@mail.com" },
+      { title: "IoT-enabled Smart Healthcare Devices", description: "Creating smart devices for healthcare using IoT", email: "xander@mail.com" },
+      { title: "AI for Predictive Healthcare", description: "Predicting health issues using AI and data analytics", email: "yara@mail.com" },
+      { title: "Virtual Reality for Fitness", description: "Using VR to create immersive fitness experiences", email: "zach@mail.com" },
+      { title: "Voice Assistants for Business", description: "Creating voice assistants to improve business workflows", email: "aaron@mail.com" },
+      { title: "AI for Image Recognition", description: "Using AI to recognize images in various industries", email: "bella@mail.com" },
+      { title: "Blockchain for Healthcare Data", description: "Secure healthcare data storage and sharing using blockchain", email: "carla@mail.com" },
+      { title: "Smart Wearables for Mental Health", description: "Wearable devices to monitor and improve mental health", email: "david@mail.com" },
+      { title: "AI for Autonomous Drones", description: "Using AI to control and optimize drone flight", email: "ella@mail.com" }
+    ];
+
+    // Get the logged-in user from local storage
+    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+
+    function showByEmailForm() {
+      document.getElementById("emailInputForm").style.display = "flex";
+      document.getElementById("ideasList").innerHTML = ""; // Clear previous results
+    }
+
+    function filterIdeasByEmail() {
+      const email = document.getElementById("emailInput").value.trim();
+      if (!email) {
+        alert("Please enter an email.");
+        return;
+      }
+
+      // Filter ideas based on email input
+      const filteredIdeas = ideas.filter(idea => idea.email === email);
+
+      // Display ideas
+      displayIdeas(filteredIdeas);
+    }
+
+    function filterIdeasByMe() {
+      document.getElementById("emailInputForm").style.display = "none"; // Hide email input
+      if (loggedInUser) {
+        const filteredIdeas = ideas.filter(idea => idea.email === loggedInUser.email);
+        displayIdeas(filteredIdeas);
+      } else {
+        alert("You need to log in to see your ideas.");
+      }
+    }
+
+    function displayIdeas(ideasToDisplay) {
+      const ideasList = document.getElementById("ideasList");
+      ideasList.innerHTML = ""; // Clear previous results
+
+      if (ideasToDisplay.length === 0) {
+        ideasList.innerHTML = "<p>No ideas found.</p>";
+        return;
+      }
+
+      ideasToDisplay.forEach(idea => {
+        const card = document.createElement("div");
+        card.className = "idea-card";
+        card.innerHTML = `
+          <h4>${idea.title}</h4>
+          <p><strong>Description:</strong> ${idea.description}</p>
+          <p><strong>Submitted By:</strong> ${idea.email}</p>
+        `;
+        ideasList.appendChild(card);
+      });
+    }
+  </script>
+</body>
+</html>

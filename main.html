@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>InnovaNest | Innovation Dashboard</title>
+
+  <!-- ✅ Favicon -->
+  <link rel="icon" type="image/png" href="images/favicon.png" />
+
+  <!-- ✅ Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+
+  <!-- ✅ SEO Meta Tags -->
+  <meta name="description" content="InnovaNest is a platform where students submit ideas, join hackathons, and participate in innovation challenges." />
+  <meta name="keywords" content="InnovaNest, innovation, hackathons, challenges, student ideas, startup, tech" />
+  <meta name="author" content="InnovaNest Team" />
+
+  <!-- ✅ Open Graph Tags (for sharing) -->
+  <meta property="og:title" content="InnovaNest | Where Innovation Begins" />
+  <meta property="og:description" content="Join hackathons, submit your ideas, and innovate together." />
+  <meta property="og:image" content="https://yourdomain.com/images/preview.png" />
+  <meta property="og:url" content="https://yourdomain.com/main.html" />
+  <meta property="og:type" content="website" />
+
+  <!-- ✅ Styling -->
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f7f8fa;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 3rem;
+      background-color: #4e54c8;
+      color: #fff;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 1.1rem;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      background: #8f94fb;
+    }
+
+    .profile-icon img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .main-dashboard-content {
+      text-align: center;
+      padding: 3rem 1rem;
+      background: linear-gradient(to bottom right, #4e54c8, #8f94fb);
+      color: #fff;
+      border-radius: 10px;
+      margin: 2rem;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .main-dashboard-content h1 {
+      font-size: 3rem;
+      margin-bottom: 2rem;
+      font-weight: 600;
+    }
+
+    .main-options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .option-card {
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .option-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .option-card h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: #4e54c8;
+    }
+
+    .option-card p {
+      font-size: 1.1rem;
+      color: #555;
+    }
+
+    footer {
+      background-color: #4e54c8;
+      color: #fff;
+      padding: 3rem 0;
+      text-align: center;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 3rem;
+    }
+
+    .footer-content h3 {
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+
+    .footer-content p,
+    .footer-content ul {
+      font-size: 1rem;
+      color: #bbb;
+    }
+
+    .footer-bottom {
+      background-color: #3c3e73;
+      padding: 1rem;
+    }
+
+    .footer-bottom p {
+      margin: 0;
+      font-size: 1rem;
+      color: #fff;
+    }
+
+    @media (max-width: 768px) {
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .main-dashboard-content h1 {
+        font-size: 2.5rem;
+      }
+
+      .option-card {
+        padding: 1.5rem;
+      }
+
+      nav ul {
+        gap: 1rem;
+      }
+
+      .footer-bottom p {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">🚀 InnovaNest</div>
+    <nav>
+      <ul>
+        <li><a href="main.html">Dashboard</a></li>
+        <li><a href="hackathons.html">Hackathons</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="mentors.html">Mentors</a></li>
+        <li><a href="myideas.html">My Ideas</a></li>
+      </ul>
+    </nav>
+    <div class="profile-icon" onclick="window.location.href='profile.html'">
+      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Profile Icon" />
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-dashboard-content">
+    <h1>Welcome to InnovaNest 🚀</h1>
+
+    <!-- Only this part of your code is updated: Inside .main-options-grid -->
+<div class="main-options-grid">
+  <div class="option-card" onclick="window.location.href='submitidea.html'">
+    <h2>✍️ Share Your Idea</h2>
+    <p>Submit your innovative ideas and start your journey!</p>
+  </div>
+
+  <div class="option-card" onclick="window.location.href='browseideas.html'">
+    <h2>🔍 Browse Ideas</h2>
+    <p>Explore ideas submitted by others based on domain.</p>
+  </div>
+
+  <!-- ✅ Replaced My Ideas with Find Collaborators -->
+  <div class="option-card" onclick="window.location.href='collaborators.html'">
+    <h2>🤝 Find Collaborators</h2>
+    <p>Connect with like-minded innovators to build something amazing.</p>
+  </div>
+
+  <div class="option-card" onclick="window.location.href='innovationchallenges.html'">
+    <h2>🏆 Innovation Challenges</h2>
+    <p>Take part in innovation challenges and showcase your ideas.</p>
+  </div>
+
+  <div class="option-card" onclick="window.location.href='trackideas.html'">
+    <h2>📊 Track Ideas</h2>
+    <p>Keep track of your ideas' progress and feedback.</p>
+  </div>
+</div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="about-section">
+        <h3>About InnovaNest</h3>
+        <p>We help students collaborate, innovate, and grow their ideas into the next big thing!</p>
+      </div>
+      <div class="contact-section">
+        <h3>Contact Us</h3>
+        <ul>
+          <li><strong>Email:</strong> <a href="mailto:support@innovanest.com">support@innovanest.com</a></li>
+          <li><strong>Phone:</strong> <a href="tel:+1234567890">+1 234-567-890</a></li>
+          <li><strong>Location:</strong> 123 Innovation Lane, Tech City</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 InnovaNest | All rights reserved.</p>
+    </div>
+  </footer>
+  <script>
+    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+    if (loggedInUser) {
+      document.querySelector(".main-dashboard-content h1").innerText = `Welcome back, ${loggedInUser.name} 🚀`;
+      console.log("Gender: " + loggedInUser.gender);
+    } else {
+      window.location.href = "login.html"; // Redirect if not logged in
+    }
+  </script>
+  
+</body>
+</html>
